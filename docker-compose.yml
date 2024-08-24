@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  backend_server_1:
+    build:
+      context: ./backend_server_1
+    ports:
+      - "5000:5000"
+
+  backend_server_2:
+    build:
+      context: ./backend_server_2
+    ports:
+      - "5001:5001"
+
+  load_balancer:
+    build:
+      context: ./load_balancer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend_server_1
+      - backend_server_2
